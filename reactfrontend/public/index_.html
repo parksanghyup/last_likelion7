@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Jekyll v3.8.6">
+        <meta content="text.html">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+
+        <title>타임라인</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a88b774f21.js"></script>
+    <style>
+      body{
+        background-color: rgb(240, 240, 240);
+      }
+      .container{
+        padding: 10px;
+        background-color: white;
+        margin-top: 10px;
+        transition: all ease 0.3s;
+        text-align: center;
+        border-radius: 20px;
+        width: 33%;
+      }
+      button{
+        border-radius: 15px;
+        background-color: white;
+      }
+      .container:hover{
+        box-shadow:6px 6px 6px 6px rgba(32,33,36,0.28);
+        border-color:rgba(223,225,229,0);
+        transform: scaleX(1.01) scaleY(1.006);
+        }
+        textarea{
+          border-radius: 20px;
+        }
+        form{
+          width:100%
+          }
+        blockquote, q {
+	        quotes: none;
+        }
+        blockquote :before, blockquote:after, q:before, q:after {
+          content: '';
+          content: none;
+        }
+        table {
+          border-collapse: collapse;
+          border-spacing: 0;
+        }
+        /*css 초기화*/
+        .card {
+          height: 400px;
+          width: 350px;
+          border-radius: 15px;
+          display: inline-block;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          position: relative;
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          overflow: hidden;
+        }
+        .card-header {
+          -webkit-transition: 0.5s; /*사파리 & 크롬*/
+            -moz-transition: 0.5s;  /*파이어폭스*/
+            -ms-transition: 0.5s;	/*인터넷 익스플로러*/
+            -o-transition: 0.5s;  /*오페라*/
+            transition: 0.5s;
+          width: 100%;
+          height: 270px;
+          border-radius: 15px 15px 0 0;
+          background-image: url("data:image/jpeg;base64,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");
+          background-size: 100% 280px;
+          background-repeat: no-repeat;	
+        }
+        .card:hover .card-header  {
+          opacity: 0.8;
+          height: 100px;
+        }
+        .card-header-is_closed{
+            background-color: #EF5A31 ;
+            color: #FFF ;
+            font-weight: bold ;
+            text-align: center ;
+            float: left;
+            margin: 15px 15px 0 15px;
+            border-radius: 50%;
+            font-weight: bold;
+            padding: 10px 10px;
+            line-height: 20px;
+        }
+        h1 {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .card-body-header{
+          line-height: 25px;
+          margin: 10px 0px 0px 20px;
+        }
+        .card-body-description  {
+            opacity: 0;
+            color: #757B82;
+            line-height: 30px;
+            -webkit-transition: .2s ease-in-out; /*사파리&크롬*/
+            -moz-transition: .2s ease-in-out; /*파이어폭스*/
+            -ms-transition: .2s ease-in-out; /*익스플로러*/
+            -o-transition: .2s ease-in-out; /*오페라*/
+            transition : .2s ease-in-out;
+            overflow: hidden;
+          height: 180px;
+          
+        }
+        .card:hover .card-body-description {
+            opacity: 1;
+            -webkit-transition: .5s ease-in-out;
+            -moz-transition: .5s ease-in-out;
+            -ms-transition: .5s ease-in-out;
+            -o-transition: .5s ease-in-out;
+            transition : .5s ease-in-out;
+            overflow: scroll;
+        }
+        .card-body-footer {
+            position: absolute; 
+            margin-top: 15px;
+            margin-bottom: 6px;
+            bottom: 0; 
+            width: 314px;
+            font-size: 14px;
+            color: #9FA5A8;
+            padding: 0 15px;
+        }
+        .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+        .reg_date {
+          float: right;
+        }
+      </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div>
+        <h1 style="text-align: left;font-family: 'Courier New', Courier, monospace;margin-left: 100px;">글쓰기</h1>
+      </div>
+
+      <form>
+        <textarea placeholder="무슨 생각 중이신가요?" style="padding: 8px 0px 0px 15px; width: 60%; height: 40px; resize: none;outline: none; "></textarea> 
+      </form>
+     
+      <form>
+        <textarea placeholder="ㅁㄴㅇㄹ?" style="padding: 5px 0px 0px 15px; width: 60%; height: 100px; resize: none;outline: none;"></textarea> 
+      </form>
+      
+      <form>
+        <button style="width: 60%; border: 0.5px solid rgb(85, 85, 255); background-color: white;outline: none;" value="올리기">올리기</button>
+      </form>
+    </div>
+
+    <div class="container" style="padding: 1px; background-color: rgb(240, 240, 240); font-size: 13px;text-align: left;">
+      <b>게시물</b>
+    </div>
+
+    <div class="container">
+      <a href="#"> <!-- 클릭 시 링크 설정 -->
+        </a><div class="card"><a href="#">
+            <!-- 카드 헤더 -->
+            <div class="card-header">
+                <div class="card-header-is_closed"> 
+                    <div> 프사 </div> 
+                </div>
+            </div>
+            <!--  카드 바디 -->
+            </a><div class="card-body"><a href="#">
+            <!--  카드 바디 헤더 -->
+                </a><div class="card-body-header"><a href="#">
+                    <h1>여기에다 제목 누르면 이동함</h1>
+    </a>          
+				<p class="card-body-nickname" style="float: left;"> 
+            올린사람: 잉여
+        </p>
+            </div>
+            <!--  카드 바디 본문 -->
+			<p class="card-body-description">
+				내용
+			</p>
+			
+			<!--  카드 바디 푸터 -->
+			<div class="card-body-footer">
+				<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                <i class="reg_date">작성일자: &nbsp;2019/1/1 </i>
+                <span><button type="button" class="btn btn-outline-info btn-sm" style="color: rgb(61, 145, 255); border: 0;outline: 0;" data-toggle="modal" data-target="#post-{{ post.id }}">수정하기</button> 
+                    <button type="submit" style="color: red;border: 0;outline: 0;" onclick="confirm('삭제하시겠습니까?')">삭제하기</button></span>
+			</div>
+		</div>
+  </div>
+  
+   <!-- 모달 -->
+   <div class="modal fade" id="post-{{ post.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">수정</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {% for # in ## %}
+          <blockquote class="blockquote">
+            <img src="#" class="profile" style="position: absolute;">
+            <div style="padding-inline-start:15%">
+              <p class="mb-0">{{ # }}</p>
+              <footer class="blockquote-footer">작성자: {{ # }}</footer>
+            </div>
+            
+          </blockquote>
+          {% endfor %}
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: center;">
+          <form method="post" action="{% url '#' post.id %} ">
+            {%csrf_token%}
+            <div style="display: flex; flex-direction: column; ">
+              <textarea name="{{ comment_form.content.name }}" class="form-control" cols="50" placeholder="수정"></textarea>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-primary">수정</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+  </body>
+</html>
