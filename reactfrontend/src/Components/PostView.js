@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
 
-const dummy_prop = {
-    title: '테스트용 타이틀',
-    content: '테스트용 글',
-}
-
-
 export default class PostView extends Component {
     render() {
         const {title, content} = this.props
@@ -26,7 +20,7 @@ export default class PostView extends Component {
                             <h1>{title}</h1>
                             </a>    
                             <p class="card-body-nickname"> 
-                                {/* 올린사람: 잉여 */}
+                                작성자 : 잉여
                             </p>
                         </div>
                         <p class="card-body-description">

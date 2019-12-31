@@ -23,4 +23,8 @@ export default {
         return axios.get('/posts/'+String(id))
     },
 
+    editPost(id, data) {
+        return axios.put('/posts/'+String(id)+'/', data)
+    }
+
 }

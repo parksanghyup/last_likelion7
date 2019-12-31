@@ -14,11 +14,18 @@ class App extends React.Component {
       content: '',
       results: [],
       modal: false,
+      temp_title: '',
+      temp_content: '',
+      temp_id:'',
     }
   }
 
-  handleOpenModal = () => {
+  handleOpenModal = async (event) => {
+    const result = await api.getPost(event.target.value);
     this.setState({
+      temp_title: result.data['title'],
+      temp_content: result.data['content'],
+      temp_id: result.data['id'],
       modal: true
     });
   }
@@ -29,14 +36,12 @@ class App extends React.Component {
     });
   }
 
-
   componentDidMount() {
     this.getPosts()
   }
 
   async getPosts() {
     const _results = await api.getAllPosts()
-    console.log(_results)
     this.setState({ results: _results.data })
   }
 
@@ -52,7 +57,6 @@ class App extends React.Component {
       title: this.state.title,
       content: this.state.content,
     })
-    console.log("작성완료\n", reuslt.data);
     this.setState({ title: '', content: '' })
     this.getPosts()
   }
@@ -63,8 +67,17 @@ class App extends React.Component {
   }
 
   handlingEdit = async (event) => {
-    await api.getPost(event.target.value)
+    
+    let _title = document.getElementsByClassName('form_title')[0].value
+    let _content = document.getElementsByClassName('form_content')[0].value
+    let a =await api.editPost(event.target.value, {
+      title: _title,
+      content: _content,
+    })
+    this.getPosts()
   }
+
+ 
 
   render() {
 
@@ -109,9 +122,7 @@ class App extends React.Component {
                   <PostView
                     key={post.id}
                     title={post.title}
-                    content={post.content}
-
-                    
+                    content={post.content}                
                   />
                   
                   <button value={post.id} style={{color: 'rgb(61, 145, 255)', border: 0, outline: 0}} onClick={this.handleOpenModal}>수정하기</button>
@@ -131,7 +142,13 @@ class App extends React.Component {
 
         {this.state.modal && (
                   <ModalPortal>
-                    <Modal onClose={this.handleCloseModal} />
+                    <Modal 
+                    onClose={this.handleCloseModal} 
+                    title={this.state.temp_title} 
+                    content={this.state.temp_content} 
+                    id={this.state.temp_id}
+                    edit={this.handlingEdit}
+                    />
                   </ModalPortal>
                 )}
       </div>
